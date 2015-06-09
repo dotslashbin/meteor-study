@@ -1,0 +1,25 @@
+<head>
+  <title>Wine-Uploader</title>
+</head>
+
+<body>
+  <h1>Welcome to the Formsadfasf</h1>
+  <ul>
+    {{#each Wines}}
+      {{> wine}}
+    {{/each}}
+  </ul>
+
+  <div>
+    <h5>form starts here</h5>
+    <form>
+    </form>
+  </div>
+</body>
+
+<template name="wine">
+  <li>
+    {{name}} - {{vintage}}:
+    <i>created at {{created_at}} -- {{producer.name}}</i>
+  </li>
+</Template>
