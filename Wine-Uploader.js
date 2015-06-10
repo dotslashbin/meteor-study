@@ -10,20 +10,15 @@ if (Meteor.isClient) {
 
   Template.body.events({
         "submit .new-wine":function(event) {
-            var name      = event.target.wine_name.value;
-            var vintage  = event.target.wine_vintage.value;
-
-            var newWine   = { name: name, vintage: vintage, created_by: Meteor.user() };
-            Wines.insert(newWine);
-            return false;
+            Meteor.call("addNewWine", event);
         },
 
         "click .test-button":function(event) {
-            alert("Someone clicked on the test");
+            Meteor.call("runTest");
         },
 
         "click .delete":function() {
-          Wines.remove(this._id); 
+            Meteor.call("deleteWine", this._id)
         }
   });
 
@@ -39,3 +34,23 @@ if (Meteor.isServer) {
 
   });
 }
+
+Meteor.methods({
+  addNewWine:function(event) {
+    var name      = event.target.wine_name.value;
+    var vintage  = event.target.wine_vintage.value;
+
+    var newWine   = { name: name, vintage: vintage, created_by: Meteor.user() };
+    Wines.insert(newWine);
+    return false;
+  },
+
+  deleteWine:function(id) {
+    Wines.remove(id);
+  },
+
+  runTest:function() {
+    console.log("Someone clicked test");
+  }
+
+});
