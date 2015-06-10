@@ -3,23 +3,45 @@
 </head>
 
 <body>
-  <h1>Welcome to the Formsadfasf</h1>
-  <ul>
-    {{#each Wines}}
-      {{> wine}}
-    {{/each}}
-  </ul>
+  <h1>{{currentUser.username}}</h1>
+  <div style="margin-bottom: 40px;">
+    <h5>Authentication </h5>
+    {{> loginButtons}}
+  </div>
+
+
+  <div>
+    <h1>List of records</h1>
+    <ul>
+      {{#each Wines}}
+        {{> wine}}
+      {{/each}}
+    </ul>
+  </div>
 
   <div>
     <h5>form starts here</h5>
-    <form>
-    </form>
+    {{> wineForm}}
   </div>
+
 </body>
 
 <template name="wine">
   <li>
-    {{name}} - {{vintage}}:
-    <i>created at {{created_at}} -- {{producer.name}}</i>
+    <button class="delete" >delete</button>
+    {{name}} - {{vintage}}, created at: {{created_at}}, created by: {{created_by._id}}
   </li>
+</template>
+
+<template name="wineForm">
+  <form class="new-wine">
+      <div>
+          <input type="text" name="wine_name" value="Name"/>
+      </div>
+      <div>
+          <input type="text" name="wine_vintage" value="Vintage"/>
+      </div>
+      <input type="submit" value="save" />
+      <input type="button" value="test" class="test-button" />
+  </form>
 </Template>
