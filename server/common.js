@@ -12,14 +12,10 @@ Schemas.Wines = new SimpleSchema({
     },
     created_at: {
       type: Date,
-      label: "crated_At"
+      label: "crated_at"
     }
 });
-
-Meteor.methods({
-
-  runTest:function() {
-    console.log(" SERVER SIDE 123131231-> Someone clicked test");
-  }
-
-});
+//
+// Wines = new Mongo.Collection("Wines");
+//
+// Wines.attachSchema(Schemas.Wines);
