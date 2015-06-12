@@ -32,33 +32,4 @@ if (Meteor.isServer) {
   Meteor.publish("wines", function() {
       return Wines.find({});
   });
-
-  // Meteor.startup(function () {
-  //   // code to run on server at startup
-  // });
 }
-
-Meteor.methods({
-  addNewWine:function(event) {
-
-    if(!Meteor.userId()) {
-      throw new Meteor.Error("not-authorized");
-    }
-
-    var name      = event.target.wine_name.value;
-    var vintage  = event.target.wine_vintage.value;
-
-    var newWine   = { name: name, vintage: vintage, created_by: Meteor.user() };
-    Wines.insert(newWine);
-    return false;
-  },
-
-  deleteWine:function(id) {
-    Wines.remove(id);
-  },
-
-  runTest:function() {
-    console.log("Someone clicked test");
-  }
-
-});

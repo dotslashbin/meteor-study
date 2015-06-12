@@ -23,25 +23,4 @@
     <h5>form starts here</h5>
     {{> wineForm}}
   </div>
-
 </body>
-
-<template name="wine">
-  <li>
-    <button class="delete" >delete</button>
-    {{name}} - {{vintage}}, created at: {{created_at}}, created by: {{created_by._id}}
-  </li>
-</template>
-
-<template name="wineForm">
-  <form class="new-wine">
-      <div>
-          <input type="text" name="wine_name" value="Name"/>
-      </div>
-      <div>
-          <input type="text" name="wine_vintage" value="Vintage"/>
-      </div>
-      <input type="submit" value="save" />
-      <input type="button" value="test" class="test-button" />
-  </form>
-</Template>
