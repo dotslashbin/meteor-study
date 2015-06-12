@@ -2,6 +2,7 @@ Wines = new Mongo.Collection("Wines");
 
 if (Meteor.isClient) {
   // counter starts at 0
+  Meteor.subscribe("wines");
   Template.body.helpers({
         Wines:function() {
           return Wines.find({});
@@ -28,15 +29,22 @@ if (Meteor.isClient) {
 }
 
 if (Meteor.isServer) {
-  Meteor.startup(function () {
-    // code to run on server at startup
-
-
+  Meteor.publish("wines", function() {
+      return Wines.find({});
   });
+
+  // Meteor.startup(function () {
+  //   // code to run on server at startup
+  // });
 }
 
 Meteor.methods({
   addNewWine:function(event) {
+
+    if(!Meteor.userId()) {
+      throw new Meteor.Error("not-authorized");
+    }
+
     var name      = event.target.wine_name.value;
     var vintage  = event.target.wine_vintage.value;
 
