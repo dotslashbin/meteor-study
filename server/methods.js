@@ -11,8 +11,16 @@ Meteor.methods({
     }
 
 
-    var newWine   = { name: name, vintage: vintage, create_at: new Date() };
-    Wines.insert(newWine);
+    // var newWine   = { name: name, vintage: vintage, created_at: new Date(), testfield:123 };
+
+    var newWine = { brand:"test brand", rating:123, name:"testname" }; 
+
+
+    Wines.insert(newWine, function(error, result){
+      console.log("Error: " + error);
+      console.log("Result: " + result);
+
+    });
   },
 
   deleteWine:function(id) {

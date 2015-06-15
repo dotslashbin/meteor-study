@@ -1,5 +1,27 @@
+// Collections
 Wines = new Mongo.Collection("Wines");
 
+// Schema definition
+var Schemas = {};
+
+Schemas.Wines = new SimpleSchema({
+    name: {
+      type:String,
+      label: "name",
+    },
+
+    vintage: {
+      type: String,
+      label: "vintage"
+    },
+    created_at: {
+      type: Date,
+      label: "crated_at"
+    }
+});
+Wines.attachSchema(Schemas.Wines);
+
+// Client
 if (Meteor.isClient) {
   // counter starts at 0
   Meteor.subscribe("wines");
@@ -39,6 +61,7 @@ if (Meteor.isClient) {
   });
 }
 
+// Server
 if (Meteor.isServer) {
   Meteor.publish("wines", function() {
     return Wines.find({});
